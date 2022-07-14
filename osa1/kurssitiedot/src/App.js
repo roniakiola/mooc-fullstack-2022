@@ -1,24 +1,29 @@
 const Header = (props) => {
   return <h1>{props.course}</h1>;
 };
-const Content = ({ props }) => {
+
+const Part = (props) => {
   return (
-    <>
-      {props.map((prop) => {
-        return (
-          <p>
-            {prop.title} {prop.exercises}
-          </p>
-        );
-      })}
-    </>
+    <p>
+      {props.title} {props.exercises}
+    </p>
   );
 };
+
 const Total = ({ props }) => {
   const total = props.map((prop) => prop.exercises).reduce((a, b) => a + b, 0);
   return <p>Number of exercises {total}</p>;
 };
 
+const Content = ({ props }) => {
+  return (
+    <>
+      {props.map((prop) => {
+        return <Part title={prop.title} exercises={prop.exercises} />;
+      })}
+    </>
+  );
+};
 const App = () => {
   const course = 'Half Stack application development';
   const parts = [
